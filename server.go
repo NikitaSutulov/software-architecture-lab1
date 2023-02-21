@@ -34,3 +34,5 @@ func main() {
 		log.Fatal(err)
 	}
 }
+
+// i play pokemon go every day
