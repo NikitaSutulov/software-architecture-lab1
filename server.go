@@ -8,6 +8,9 @@ import (
 	"time"
 )
 
+// function timeHandler
+// handles GET request to route /time
+// sends current time in RFC3339 format in JSON-response
 func timeHandler(responseWriter http.ResponseWriter, request *http.Request) {
 	if request.URL.Path != "/time" {
 		http.Error(responseWriter, "404 not found", http.StatusNotFound)
