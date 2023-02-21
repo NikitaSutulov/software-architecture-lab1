@@ -8,23 +8,23 @@ import (
 	"time"
 )
 
-func timeHandler(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/time" {
-		http.Error(w, "404 not found", http.StatusNotFound)
+func timeHandler(responseWriter http.ResponseWriter, request *http.Request) {
+	if request.URL.Path != "/time" {
+		http.Error(responseWriter, "404 not found", http.StatusNotFound)
 		return
-		}
-	if r.Method != http.MethodGet {
-	http.Error(w, "Method is not supported", http.StatusNotFound)
-	return
+	}
+	if request.Method != http.MethodGet {
+		http.Error(responseWriter, "Method is not supported", http.StatusNotFound)
+		return
 	}
 
 	currentTime := time.Now().Format(time.RFC3339)
 	response := map[string]string{"time": currentTime}
 
-	w.Header().Set("Content-Type", "application/json")
-	err := json.NewEncoder(w).Encode(response)
+	responseWriter.Header().Set("Content-Type", "application/json")
+	err := json.NewEncoder(responseWriter).Encode(response)
 	if err != nil {
-	return
+		return
 	}
 }
 
